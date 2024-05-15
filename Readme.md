@@ -1,5 +1,5 @@
 # Hello, Solana!
-A simple SBF (Solana eBPF) Assembly program that prints _"Hello, Solana!"_ using `sol_log`.
+A simple SBF (Solana eBPF) Assembly program that prints _"Hello, Solana!"_ using `sol_log`. Includes fully-annotated code below, along with a Makefile, linker file, build, deploy and test scripts.
 
 ```asm
 .globl e             # e - "entrypoint" but 9 bytes cheaper!
@@ -15,5 +15,4 @@ message:
     .ascii "Hello, Solana!" # define "message" as used above
 ```
 
-# Linking
-Our linker file has been reasonably optimized to remove junk we don't need, leading to a compiled program size of only 1,168 bytes. Here's what it's actually doing.
+The program and its linker file have been reasonably well-optimized to remove junk we don't need, leading to a compiled program size of just 1,168 bytes, and consuming just 104 CUs.
