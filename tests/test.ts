@@ -1,4 +1,4 @@
-import { Connection, Keypair, Transaction, TransactionInstruction, TransactionInstructionCtorFields } from "@solana/web3.js"
+import { ComputeBudgetProgram, Connection, Keypair, Transaction, TransactionInstruction, TransactionInstructionCtorFields } from "@solana/web3.js"
 const signerSeed = JSON.parse(process.env.SIGNER)
 import programSeed from "../deploy/log_keypair.json"
 const programKeypair = Keypair.fromSecretKey(new Uint8Array(programSeed))
@@ -13,7 +13,9 @@ const signer = Keypair.fromSecretKey(new Uint8Array(signerSeed))
 
 console.log(signer.publicKey);
 const tx = new Transaction()
-tx.instructions.push(new TransactionInstruction({
+tx.instructions.push(
+    ComputeBudgetProgram.setComputeUnitLimit({ units: 254 }),
+    new TransactionInstruction({
     keys: [],
     programId: program,
     data: Buffer.alloc(0)
